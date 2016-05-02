@@ -124,23 +124,23 @@ RSpec.describe <%= controller_class_name %>Controller, <%= type_metatag(:control
       }
 
       it "updates the requested <%= ns_file_name %>" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => new_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: new_attributes}, session: valid_session}
         <%= file_name %>.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested <%= ns_file_name %> as @<%= ns_file_name %>" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => valid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: valid_attributes}, session: valid_session}
         expect(assigns(:<%= ns_file_name %>)).to eq(<%= file_name %>)
       end
 <% unless Rails.application.config.api_only -%>
       it "redirects to the <%= ns_file_name %>" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => valid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: valid_attributes}, session: valid_session}
         expect(response).to redirect_to(<%= file_name %>)
       end
 <% else %>
       it "returns the updated <%= ns_file_name %>" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => valid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: valid_attributes}, session: valid_session}
         expect(parsed_body).to eq(<%= file_name %>)
       end
 <% end -%>
@@ -148,17 +148,17 @@ RSpec.describe <%= controller_class_name %>Controller, <%= type_metatag(:control
 
     context "with invalid params" do
       it "assigns the <%= ns_file_name %> as @<%= ns_file_name %>" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => invalid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: invalid_attributes}, session: valid_session}
         expect(assigns(:<%= ns_file_name %>)).to eq(<%= file_name %>)
       end
 <% unless Rails.application.config.api_only -%>
       it "re-renders the 'edit' template" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => invalid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: invalid_attributes}, session: valid_session}
         expect(response).to render_template("edit")
       end
 <% else %>
       it "returns the validation errors" do
-        put :update, {params: {id: <%= file_name %>.to_param, :<%= ns_file_name %> => invalid_attributes}, session: valid_session}
+        put :update, {params: {id: <%= file_name %>.to_param, <%= ns_file_name %>: invalid_attributes}, session: valid_session}
         expect(parsed_body).to eq(<%= file_name %>)
       end
 <% end -%>
